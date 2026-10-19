@@ -1,56 +1,29 @@
-from pyscript import document, display
+from pyscript import document
 
+grade7 = {"Estelle Chavez", "Aaliyah Pardilla", "Ronald Saludar"}
+grade8 = {"Erich Eligino", "Bella Moncupa", "Jibril Abdul"}
+grade9 = {"Julia Ramos", "Orange Mendoza", "Christian Mnahan"}
+grade10 = {"Vyelle Bunag", "Maiselle Marin", "Andrik David"}
 
-from flask import Flask, render_template, request, redirect, url_for
+all_members = grade7 | grade8 | grade9 | grade10
 
-app
+members_list = "<br>".join(sorted(all_members))
+document.getElementById("members").innerHTML = members_list
+document.getElementById("total").innerText = f"TOTAL MEMBERS: {len(all_members)}"
 
-# Initial club members
-members = [
-    ("Alice", "Blue"),
-    ("Anita", "Bath"),
-    ("Billy", "Sparks"),
-    ("Eileen", "Dover"),
-    ("Ella", "Vator"),
-    ("Francisco", "Portero"),
-    ("Joe", "Kerr"),
-    ("Juanito", "Lakarin"),
-    ("Justin", "Case"),
-    ("Ligaya", "Anonuevo"),
-    ("Paige", "Turner"),
-    ("Restituto", "Fruto"),
-    ("Sheldon", "Cooper"),
-    ("Tam", "Nguyen"),
-]
+def add_member(event):
+    global all_members
 
+    first = document.getElementById("first").value.strip().title()
+    last = document.getElementById("last").value.strip().title()
 
-@app.route("/", methods=["GET", "POST"])
-def index():
-    if request.method == "POST":
-        first_name = request.form.get("first_name", "").strip()
-        last_name = request.form.get("last_name", "").strip()
+    new_member = first + " " + last
 
-        if first_name and last_name:
-            new_member = (first_name.title(), last_name.title())
+    all_members = all_members | {new_member}
 
-            # Prevent duplicate members
-            if new_member not in members:
-                members.append(new_member)
+    members_list = "<br>".join(sorted(all_members))
+    document.getElementById("members").innerHTML = members_list
+    document.getElementById("total").innerText = f"TOTAL MEMBERS: {len(all_members)}"
 
-        return redirect(url_for("index"))
-
-    # Sort by first name, then last name
-    sorted_members = sorted(
-        members,
-        key=lambda member: (member[0].lower(), member[1].lower())
-    )
-
-    return render_template(
-        "index.html",
-        members=sorted_members,
-        total=len(sorted_members)
-    )
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
+    document.getElementById("first").value = ""
+    document.getElementById("last").value = ""
