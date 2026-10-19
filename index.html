@@ -1,65 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Club Members</title>
+    <title>Glee Club Members</title>
 
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #16052d, #512080);
+            color: white;
+            font-family: monospace;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: auto;
+        }
+
+        input {
+            width: 95%;
+            padding: 10px;
+            margin: 7px 0;
+            border-radius: 5px;
+            border: none;
+        }
+
+        button {
+            background: #300044;
+            color: white;
+            border: 1px solid white;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .result {
+            background: #29003d;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            line-height: 1.8;
+        }
+
+        h1 {
+            color: #f0d5ff;
+        }
+    </style>
 </head>
+
 <body>
+    <div class="container">
+        <h1>ADD NEW GLEE CLUB MEMBER:</h1>
 
-    <main class="container">
-    <h1>ADD NEW GLEE CLUB MEMBER:</h1>
+        <input id="first" type="text" placeholder="First Name">
+        <input id="last" type="text" placeholder="Last Name">
 
-    <form method="POST" action="/">
-    <input
-    type="text"
-    name="first_name"
-    placeholder="First Name"
-    aria-label="First Name"
-    required
-    >
+        <br><br>
+        <button py-click="add_member">Submit</button>
 
-    <input
-    type="text"
-    name="last_name"
-    placeholder="Last Name"
-    aria-label="Last Name"
-    required
-    >
+        <div class="result">
+            <h3>ALL MEMBERS:</h3>
+            <div id="members"></div>
+            <h3 id="total">TOTAL MEMBERS: 12</h3>
+        </div>
+    </div>
 
-    <button type="submit">Submit</button>
-    </form>
-
-    <section class="member-list">
-    <h2>ALL MEMBERS:</h2>
-
-    <ul>
-    <li>
-        Carlos David
-        Vyelle Bunag
-        Alexa Cunanan
-        Maiselle Marin
-        Ziki Borromeo
-        Aeris Bandong
-        Gavin Taguiga
-        Jericho Magsalin
-        Hans Arada
-        Suhmer Pilao
-        Queeny Ramos
-        Nica Crispino
-    </li>
-    </ul>
-
-    <p class="total">
-    TOTAL MEMBERS:
-    </p>
-
-    </section>
-    </main>
-
-</body>
-</html>
-
+    <script type="py" src="main.py"></script>
 </body>
 </html>
